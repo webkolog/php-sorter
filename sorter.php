@@ -199,6 +199,7 @@ class Sorter {
 		$sth->bindValue(":vi_id", $data_id);
 		$sth->execute();
 		$sth = $this->db->prepare("UPDATE " . $this->tableName . " SET " . $this->listRow . " = " . $this->listRow . " -1 ".$this->filterString.$this->setWhere($this->listRow." >= :order_no"));
+		foreach ($this->filterValues as $key => $value) { // EKSİK DÖNGÜ EKLENDİ
 			$new_key = is_numeric($key) ? $key + 1 : $key;
 			$sth->bindValue($new_key, $value);
 		}
